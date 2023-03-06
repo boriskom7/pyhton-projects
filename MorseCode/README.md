@@ -1,6 +1,6 @@
-#Goal : Text to Morse Code Converter
+# Goal : Text to Morse Code Converter
 
-##Concepts:
+## Concepts:
 
   1. Dictionaries
   2. Procedures
