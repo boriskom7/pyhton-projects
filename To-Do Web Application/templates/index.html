@@ -1,0 +1,119 @@
+{% include "header.html" %}
+
+{% block content %}
+
+    <!-- task list selection -->
+    <nav class="sidebar">
+        <header>
+            <div class="logo"><img src="{{ url_for('static', filename='img/logo.svg') }}" alt=""></div>
+            <div class="logo-text">INFINITY TO-DO</div>
+            <hr>
+        </header>
+
+        <div class="task-bar">
+            <ul class="nav nav-pills flex-column mb-auto">
+                {% for list in task_lists %}
+                <li class="nav-item ">
+                    <a href="{{ url_for('show_list', list_name=list.name) }}" class="nav-link  {% if request.path[1:] == list.name %}active{% endif %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clipboard-check" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                          <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                          <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                        </svg>
+                        <span>{{ list.name }}</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <hr>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="big-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <i class="bi bi-plus-circle"></i>Create a New List
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Creating a New Task List</h1>
+                <button type="button" class="" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x"></i></button>
+              </div>
+
+              <div class="modal-body">
+                <form action="{{ url_for('add_list') }}" method="post" role="form">
+                      <input type="text" name="new_list" class="form-control" placeholder="Select a name for the new list...">
+                      <button type="submit">Create List</button>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+    </nav>
+
+    <!-- tasks view -->
+    <div class="right-bg col-lg-10">
+        <!-- new task input -->
+        <form action="{{ url_for('add_task', list_name=request.path[1:]) }}" method="post" class="task-input" role="form">
+              <input type="text" name="new_task" class="" placeholder="add a new task..." autofocus autocomplete="off">
+              <button type="submit" class="btn">Add Task</button>
+        </form>
+        <!-- tasks list -->
+        <div class="right-space">
+            <table>
+                <tbody>
+                    {% for task in tasks %}
+                        <tr>
+                            <td>
+                                <a href="{{ url_for('complete_task', task_id=task.id) }}">
+                                  {% if task.completed == True %}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#0B2361" class="bi bi-check-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/></svg>
+                                  {% else %}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#0B2361" class="bi bi-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/></svg>
+                                  {% endif %}
+                                </a>
+                            </td>
+
+                            <td>
+                                {% if task.completed %}
+                                <div class="task-list-text-completed">{{ task.description }}</div>
+                                {% else %}
+                                <form action="{{ url_for('edit_task', list_name=request.path[1:], task_id=task.id) }}" method="post" class="task-list-text" role="form">
+                                      <input type="text" name="edit_task" class="task-list-edit" placeholder="{{ task.description }}" autocomplete="off">
+                                </form>
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                <div class="task-times">
+                                 <i class="bi bi-align-start"></i> {{ task.created.strftime('%Y-%m-%d , %H:%M') }}
+                                 <br>
+                                 {% if "2100-01-01 , 18:00" != task.completed_date.strftime('%Y-%m-%d , %H:%M') %}
+                                   {{ task.completed_date.strftime('%Y-%m-%d , %H:%M') }} <i class="bi bi-align-end"></i>
+                                 {% endif %}
+                                </div>
+                            </td>
+
+                            <td>
+                                <a href="{{ url_for('delete_task', task_id=task.id) }}" class="task-action"><i class="bi bi-trash"></i></a>
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+
+{% include "footer.html" %}
