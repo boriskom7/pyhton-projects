@@ -1,0 +1,68 @@
+{% include "header.html" %}
+
+{% block content %}
+
+<div class="home-page">
+    <div class="focus">
+        <div class="box-title">Don't stop writing... </div>
+        <h3>or all progress will be lost.</h3>
+        <form action="{{ url_for('home') }}" method="post" class="" role="form">
+            <div class="center">
+                <input class="checkbox-tools" type="radio" value=5 name="time-options" id="time-1">
+                <label class="for-checkbox-tools" for="time-1">
+                    5s
+                </label>
+                <input class="checkbox-tools" type="radio" value=10 name="time-options" id="time-2">
+                <label class="for-checkbox-tools" for="time-2">
+                    10s
+                </label>
+                <input class="checkbox-tools" type="radio" value=15 name="time-options" id="time-3">
+                <label class="for-checkbox-tools" for="time-3">
+                    15s
+                </label>
+                <input class="checkbox-tools" type="radio" value=20 name="time-options" id="time-4">
+                <label class="for-checkbox-tools" for="time-4">
+                    20s
+                </label>
+                <input class="checkbox-tools" type="radio" value=30 name="time-options" id="time-5">
+                <label class="for-checkbox-tools" for="time-5">
+                    30s
+                </label>
+                <input class="checkbox-tools" type="radio" value=45 name="time-options" id="time-6">
+                <label class="for-checkbox-tools" for="time-6">
+                    45s
+                </label>
+                <input class="checkbox-tools" type="radio" value=60 name="time-options" id="time-7">
+                <label class="for-checkbox-tools" for="time-7">
+                    60s
+                </label>
+            </div>
+            <div class="center">
+                <h4>select a time frame to think, and start writing</h4>
+            </div>
+            <div>
+                <button type="submit" class="main-btn">Start Writing</button>
+            </div>
+            <div class="center" id="radios">
+                <label for="safe" class="">
+                    <input type="radio" name="mode" id="safe" value="safe" checked/>
+                    <i class="bi bi-emoji-laughing"></i>
+                    <span>Safe</span>
+                </label>
+                <label for="brutal" class="">
+                    <input type="radio" name="mode" id="brutal" value="brutal" />
+                    <i class="bi bi-radioactive"></i>
+                    <span>Brutal</span>
+                </label>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
+
+{% include "footer.html" %}

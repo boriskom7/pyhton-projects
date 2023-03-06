@@ -1,0 +1,64 @@
+{% include "header.html" %}
+
+{% block content %}
+
+<div class="container-page">
+    <div class="progress-bar">
+        <progress max="{{ timer }}" value="{{ timer }}" id="timer" class="progress"></progress>
+    </div>
+
+    <div class="text-box">
+        <textarea placeholder="Start typing..." spellcheck="false" id="textArea" oninput="countWords()" autofocus></textarea>
+    </div>
+
+    <div class="counter">
+        Word Count: <span id="wordCount">0</span>
+    </div>
+
+    <div class="mode-ind">
+        {% if mode == "safe" %}
+            <p>SAFE</p><i class="bi bi-emoji-laughing"></i>
+        {% else %}
+            <p>BRUTAL</p><i class="bi bi-radioactive"></i>
+        {% endif %}
+    </div>
+</div>
+
+
+<script type="application/javascript">
+    const progressBar = document.getElementById("timer");
+    const wordCount = document.getElementById("wordCount");
+
+    var pText = document.querySelectorAll('.mode-ind p')[0].innerHTML;
+
+    let inputTextArea = document.getElementById("textArea");
+
+    let nIntervalId;
+
+    function countWords() {
+        wordCount.innerHTML = inputTextArea.value.split(' ').length;
+        progressBar.value = progressBar.max;
+        clearInterval(nIntervalId);
+        nIntervalId = setInterval(countDown, 500);
+    };
+
+    function countDown() {
+        progressBar.value = progressBar.value - 1;
+        if (progressBar.value == 0) {
+            clearInterval(nIntervalId);
+            if (pText == "SAFE") {
+              copyToClipboard(inputTextArea.value);
+            };
+            inputTextArea.value = ' ';
+        };
+     };
+
+    function copyToClipboard(text) {
+        window.prompt("Time is up! Start over and make better next time...Copy to clipboard: Ctrl+C, Enter", text);
+    };
+</script>
+
+{% endblock %}
+
+{% include "header.html" %}
+
