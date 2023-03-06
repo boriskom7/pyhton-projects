@@ -1,0 +1,22 @@
+<!--- Navbar --->
+
+<nav class="navbar navbar-expand-sm navbar-light div-container">
+    <div class="container-fluid full-width no-height">
+        <a class="navbar-brand" href="/">
+          <img src="{{ url_for('static', filename='img/logo text.png') }}" alt="" >
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item nav-text">
+              <a type="button" href="/new" class="btn btn-primary">ADD CAFE</a>
+            </li>
+            <li class="nav-item nav-text">
+              <a type="button" href="/about" class="btn btn-light">ABOUT</a>
+            </li>
+          </ul>
+        </div>
+    </div>
+</nav>

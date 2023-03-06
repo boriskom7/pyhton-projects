@@ -1,0 +1,85 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% include "header.html" %}
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('{{url_for('static', filename='img/new-img.jpg')}}')">
+  <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Add new cafe</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+</header>
+
+
+{% block content %}
+<div class="div-container">
+  <form action="" method="post" class="form" role="form">
+    {{ form.csrf_token() }}
+
+    <div class="row">
+      <div class="form-group col-md-6">
+        {{ wtf.form_field(form.name, class='form-control', placeholder='Cafe Name') }}
+      </div>
+      <div class="form-group col-md-6">
+        {{ wtf.form_field(form.location, class='form-control', placeholder='...') }}
+      </div>
+    </div>
+
+    <br>
+
+    <div class="form-group">
+      {{ wtf.form_field(form.map_url, type='url', class='form-control', placeholder='http://') }}
+      <br>
+      {{ wtf.form_field(form.img_url, type='url', class='form-control', placeholder='http://') }}
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="form-group col-md-3">
+        {{ wtf.form_field(form.has_sockets, class='form-control') }}
+      </div>
+      <div class="form-group col-md-3">
+        {{ wtf.form_field(form.has_toilet, class='form-control') }}
+      </div>
+      <div class="form-group col-md-3">
+        {{ wtf.form_field(form.has_wifi, class='form-control') }}
+      </div>
+      <div class="form-group col-md-3">
+        {{ wtf.form_field(form.can_take_calls, class='form-control') }}
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row col-md-6 mx-auto">
+      <div class="col-md-6">
+        {{ wtf.form_field(form.seats, class='form-control', placeholder='0') }}
+      </div>
+      <div class="col-md-6">
+        {{ wtf.form_field(form.coffee_price, class='form-control', placeholder='0') }}
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+          <button type="submit" class="btn btn-primary col-md-4 mx-auto">Add Cafe</button>
+    </div>
+
+    <br>
+
+  </form>
+</div>
+
+{% include "footer.html" %}
+{% endblock %}
+
+
+

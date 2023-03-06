@@ -1,0 +1,88 @@
+{% include "header.html" %}
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('{{url_for('static', filename='img/home-img.jpg')}}')">
+  <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Coffee for everyone</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+</header>
+
+
+
+<div class="div-container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Map</th>
+        <th scope="col">Image</th>
+        <th scope="col">Location</th>
+        <th scope="col">Sockets</th>
+        <th scope="col">Toilets</th>
+        <th scope="col">WiFi</th>
+        <th scope="col">Calls</th>
+        <th scope="col">Num of Seats</th>
+        <th scope="col">Coffee Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cafe in cafes %}
+      <tr>
+        <th scope="row">{{ cafe.id }}</th>
+        <td>{{ cafe.name }}</td>
+        <td>
+          <a href="{{ cafe.map_url }}">Map</a>
+        </td>
+        <td>
+          <a href="{{ cafe.img_url }}">Image</a>
+        </td>
+        <td>{{ cafe.location }}</td>
+        <td>
+          {% if cafe.has_sockets == True %}
+            <i class="bi bi-check-square"></i>
+          {% else %}
+            <i class="bi bi-square"></i>
+          {% endif %}
+        </td>
+        <td>
+          {% if cafe.has_toilet == True %}
+            <i class="bi bi-check-square"></i>
+          {% else %}
+            <i class="bi bi-square"></i>
+          {% endif %}
+        </td>
+        <td>
+          {% if cafe.has_wifi == True %}
+            <i class="bi bi-check-square"></i>
+          {% else %}
+            <i class="bi bi-square"></i>
+          {% endif %}
+         </td>
+        <td>
+          {% if cafe.can_take_calls == True %}
+            <i class="bi bi-check-square"></i>
+          {% else %}
+            <i class="bi bi-square"></i>
+          {% endif %}
+        </td>
+        <td>{{ cafe.seats }}</td>
+        <td>{{ cafe.coffee_price }}$</td>
+        <td><a href="{{ url_for('edit', cafe_id=cafe.id) }}"><i class="bi bi-pencil-square"></i></a></td>
+        <td><a href="{{ url_for('delete', cafe_id=cafe.id) }}"><i class="bi bi-trash3-fill"></i></a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% include "footer.html" %}
+
+
