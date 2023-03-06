@@ -1,0 +1,109 @@
+h1 {
+    font-weight: 600;
+    font-size: 32px;
+    color: black;
+    padding: 5px 5px;
+    text-align: center;
+}
+
+h2 {
+    font-weight: 400;
+    font-size: 24px;
+    color: red;
+    padding: 5px 5px;
+    text-align: center;
+}
+
+h4 {
+    font-weight: 800;
+    font-size: 24px;
+    color: black;
+    padding: 5px 5px;
+    text-align: center;
+}
+
+.div-container{
+    position: relative;
+    z-index: 10;
+    display: block;
+    width: 80%;
+    height: auto;
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 20px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+header.masthead .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #212529;
+  opacity: 0.25;
+}
+
+header.masthead {
+  margin-bottom: 50px;
+  background: no-repeat center center;
+  background-color: #868e96;
+  background-attachment: scroll;
+  position: relative;
+  background-size: cover;
+}
+
+.page-heading h1{
+    padding: 180px 0;
+
+    font-family: 'Anek Latin', sans-serif;
+    font-size: 70px;
+    font-weight: 800px;
+
+    margin-top: 0;
+    color: #FFFFFF;
+}
+
+.div-content{
+    position: static;
+    z-index: 1;
+    max-width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 50px 50px 45px;
+    border-style: solid;
+    border-width: 0px 0px;
+    border-color: #000000;
+    background-color: #ffffff;
+    color: #24323b;
+}
+
+.btn {
+  font-size: 14px;
+  font-weight: 800;
+  padding: 15px 25px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 0;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+label {
+    font-weight: 600;
+}
+
+.nav-text {
+    font-size: 24px;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #F2C94C;
+    border-color: #F2C94C;
+}
+
+.btn-light, .btn-light:hover, .btn-light:active, .btn-light:visited {
+    background-color: #FFFFFF;
+    border-color: #FFFFFF;
