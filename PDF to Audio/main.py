@@ -9,7 +9,7 @@ import os
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "C:\directed-beacon-372206-8321d370824f.json"
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'mysecrettodolistpassword1'
+app.config['SECRET_KEY'] = 'xxxxxxxxxx'
 Bootstrap(app)
 
 
