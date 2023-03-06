@@ -13,10 +13,10 @@ import stripe
 
 BASE_URL = "http://127.0.0.1:5000"
 
-stripe.api_key = 'sk_test_51MY3duITN1T2i86gfDeNuivL66fodFzzsPPyqGP2moMBf1HrseB9Ylf3VNCv9yP83PmNh7ZwsJN0XMEcMfLRnMOr00eamAqPwD'
+stripe.api_key = 'xxxxxxxx'
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'mysecrettodolistpassword1'
+app.config['SECRET_KEY'] = 'xxxxxxxx'
 Bootstrap(app)
 gravatar = Gravatar(app, size=100, rating='g', default='retro', force_default=False, force_lower=False, use_ssl=False, base_url=None)
 
