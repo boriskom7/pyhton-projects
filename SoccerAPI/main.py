@@ -5,7 +5,7 @@ from data import Data
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'mysecrettodolistpassword1'
+app.config['SECRET_KEY'] = 'xxxxxxxxxxx'
 Bootstrap(app)
 
 
