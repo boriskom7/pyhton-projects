@@ -1,0 +1,58 @@
+{% include "header.html" %}
+
+{% block content %}
+
+<div class="image-page">
+
+    <div class="pic-header header">
+        <h3>Loaded: {{file}}</h3>
+    </div>
+
+    <div class="pic">
+        <img src="static/img/{{file}}" alt="">
+    </div>
+
+    <div class="color-list-header header"> 
+        <h3>10 Most Dominant Colors Detected in the Image:</h3>      
+    </div>  
+
+    <div class="color-list">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">HEX Code</th>
+                    <th scope="col">Color Box</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for color, count in colors %}
+                    <tr>
+                        <th colspan="1">{{loop.index}}</th>
+                        <td colspan="1">{{color}}</td>
+                        <td colspan="2" style="background-color: {{color}};"></td>
+                        <td colspan="2"><button class="copy-btn" onclick="copyText('{{color}}')"><i class="bi bi-text-paragraph"></i>  Copy to Clipboard</button></td>
+                    </tr>
+                {% endfor %}
+            </tbody>          
+        </table>
+    </div>    
+
+    <div class="color-footer">
+        <a href="{{url_for('home')}}">
+            <button type="button">Analyze New Image</button>
+        </a>
+    </div>  
+</div>
+
+<script>
+    function copyText(color) {
+        /* Copy text into clipboard */
+        navigator.clipboard.writeText(color);
+    }
+</script>
+
+{% endblock %}
+
+{% include "footer.html" %}
