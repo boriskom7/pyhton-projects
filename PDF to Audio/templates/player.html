@@ -1,0 +1,27 @@
+{% include "header.html" %}
+
+{% block content %}
+
+<div class="player-page">   
+    <div class="player-head">
+        <h2>Listen to: {{ file }}</h2>
+        <a href="{{url_for('home')}}">HOME<i class="bi bi-house"></i></a>
+    </div>
+
+    <hr>
+
+    <figure>
+        <audio controls>
+            <source src="static/audio/output.ogg" type="audio/ogg">    
+        </audio>
+    </figure>
+
+    <hr>
+    <div class="PDF-text">
+        <p>{{ text }}</p>
+    </div>
+</div>
+
+{% endblock %}
+
+{% include "footer.html" %}
