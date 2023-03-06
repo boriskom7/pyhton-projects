@@ -1,0 +1,77 @@
+{% include "header.html" %}
+
+{% block content %}
+
+<div class="home">
+      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="/static/img/c1.jpg" height=600 class="d-block w-100" alt="">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>We Are Now Open!</h5>
+              <p>Finaly aft</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="/static/img/c2.jpg" height=600 class="d-block w-100" alt="">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>The best shopping experience</h5>
+              <p>Some representative placeholder content for the second slide.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="/static/img/c3.jpg" height=600 class="d-block w-100" alt="">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Free and super fast delivery</h5>
+              <p>Some representative placeholder content for the third slide.</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <div class="promotion">
+        <h1>Promotion</h1>
+        <div class="card-group">
+          {% for item in promotion_items %}
+          <div class="card promotion-card">
+            <div class="promotion-img">
+              <img src="{{ item.img_url }}" class="card-img-top" alt="...">
+              {% if item.discount != 0: %}
+              <div class="promotion-discount">{{ '%0.0f' % (item.discount*100)|float }}% OFF</div>
+              {% endif %}
+            </div>
+            <div class="card-body">
+              <div class="promotion-title row">
+                <h4 class="col-sm-9">{{ item.name }}</h4>
+                {% if item.discount != 0: %}
+                {% set discounted = (item.price | currencyFormat)*(1 - item.discount) %}
+                <div class="promotion-price discount col-sm-3">${{ '%0.2f' % discounted|float }}</div>
+                {% else %}
+                <div class="promotion-price col-sm-3">{{ item.price }}</div>
+                {% endif %}
+              </div>
+              <p class="card-text">{{ item.description }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <a href="{{ url_for('estore') }}"><button type="button" class="btn btn-warning action-button">Go To Store</button></a>
+      </div>
+</div>
+
+{% include "footer.html" %}
+{% endblock %}
+

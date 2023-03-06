@@ -1,0 +1,82 @@
+{% include "header.html" %}
+
+{% block content %}
+
+<div class="page row">
+        <div class="col-lg-8 cart-show list-group">
+          <h1>Cart</h1>
+          <br>
+            <ul style="list-style: none;" class="list-group">
+                <div class="row">
+                  <div class="col-lg-1"></div>
+                  <div class="row col-lg-11">
+                    <div class="col-lg-4 table-header">Item</div>
+                    <div class="col-lg-2 table-header">Price</div>
+                    <div class="col-lg-2 table-header">Discount</div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-md-2 table-header">Quantity</div>
+                  </div>
+                  <br>
+                </div>
+                {% for item in order %}
+                 <li>
+                    <div class="card mb-3" >
+                        <div class="row g-0">
+                          <div class="col-md-1">
+                            <img src="{{ item.item.img_url }}" class="img-fluid rounded-start"  width="200" height="200">
+                          </div>
+                          <div class="col-md-11">
+                            <div class="card-body row">
+                              <div class="col-lg-4">
+                                <h4 class="card-title table-text">{{ item.item.name }}</h4>
+                                <div class="barcode-text table-text">{{ item.item.barcode }}</div>
+                              </div>
+                              <div class="price-text col-lg-2 table-text">{{ item.item.price }}</div>
+                              {% if item.item.discount != 0: %}
+                                {% set discounted = ( item.item.price | currencyFormat)*(item.item.discount) %}
+                                <div class="discount-text col-lg-2 table-text">-${{ '%0.2f' % discounted|float }}</div>
+                              {% else %}
+                                <div class="price-text col-lg-2 table-text"></div>
+                              {% endif %}
+                              <div class="col-lg-1"></div>
+                              <form action="{{ url_for('update_cart', order_id = item.id) }}" method="post" role="form" class="col-lg-2">
+                                <input type="number" min=1 max="{{ item.item.quantity }}" class="form-control" placeholder={{ item.item_count }} name="count">
+                                <input type="submit" hidden />
+                              </form>         
+                              <a class="col-lg-1" href="{{ url_for('remove_from_cart', item_id=item.id) }}"><i class="bi bi-x-lg"></i></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-3 cart-summary">
+            <h1>Order Summary</h1>
+            <hr>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="checkout-title">Subtotal:</div>
+                <div class="checkout-title">Discount:</div>
+                <div class="checkout-title total">Total:</div>
+              </div>
+              <div class="col-sm-6">
+                <div class="checkout-value"> ${{ '%0.2f' % subtotal }}</div>
+                <div class="checkout-value"> -${{ '%0.2f' % discount }}</div>
+                <div class="checkout-value total">${{ '%0.2f' % total }}</div>
+              </div>
+            </div>
+            <hr>
+            <a href="{{ url_for('checkout') }}"><button type="button" class="btn btn-warning action-button checkout-btn"><i class="icon bi bi-bag-check"></i>Proceed to checkout</button></a>
+            <br>
+            <a href="#"><button type="button" class="btn btn-warning action-button  checkout-btn"><i class="icon bi bi-paypal"></i></i>Paypal Checkout</button></a>
+        </div>
+</div>
+
+
+
+{% endblock %}
+
+{% include "footer.html" %}

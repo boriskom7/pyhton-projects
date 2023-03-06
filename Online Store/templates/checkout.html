@@ -1,0 +1,24 @@
+{% include "header.html" %}
+
+{% block content %}
+
+<div class="page">
+    <h1>Checkout </h1>
+</div>
+
+<section>
+    <div class="product">
+      <img src="https://i.imgur.com/EHyR2nP.png" alt="The cover of Stubborn Attachments" />
+      <div class="description">
+        <h3>Stubborn Attachments</h3>
+        <h5>${{ total }}</h5>
+      </div>
+    </div>
+    <form action="/create-checkout-session" method="POST">
+      <button type="submit" id="checkout-button">Checkout</button>
+    </form>
+  </section>
+
+{% endblock %}
+
+{% include "footer.html" %}

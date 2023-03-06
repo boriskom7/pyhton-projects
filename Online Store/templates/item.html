@@ -1,0 +1,107 @@
+{% include "header.html" %}
+
+{% block content %}
+
+
+<div class="page row">
+
+    <div class="col-lg-5">
+        <img src="{{ item.img_url }}" class="card-img-top" alt="...">
+    </div>
+    <div class="col-lg-1"></div>
+    <div class="col-lg-6">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4 class="card-title">{{ item.name }}</h4>
+                    <div class="barcode-text">{{ item.barcode }}</div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="price-text">{{ item.price }}</div>
+                </div>
+            </div>
+            <hr>
+            <p>{{ item.details }}</p>
+            <div class="row">
+                <div class="available-text col-sm-2">Available:{{ item.quantity }}</div>
+                <div class="col-sm-7"></div>
+                <div class="col-sm-3">
+                    <form action="{{ url_for('add_to_cart', item_id = item.id) }}" method="post" role="form" class="input-group ">
+                        {% if item.quantity == 0: %}
+                        <input type="number" min="0" max="0" class="form-control" placeholder="Out of Stock" name="count">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2" disabled>Add to Cart</button>                           
+                        {% else %}
+                        <input type="number" min=1 max="{{ item.quantity }}" class="form-control" placeholder=1 name="count">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Add to Cart</button>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+            <br>
+            <div>
+                <h4>Related Items</h4>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    {% for item in related_items %}
+                    <div class="col">
+                      <div class="card">
+                        <a href="{{ url_for('item', item_id=item.id) }}"><img src="{{ item.img_url }}" class="card-img-top" alt="..."></a>
+                        <div class="card-body">
+                          <h4 class="card-title">{{ item.name }}</h4>
+                        </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+    </div>
+    <br>
+    <br>
+    <h4 class="vertical-seperation">Reviews</h4>
+    <hr>
+    <div class="row">
+        <div class="comment-summary col-lg-3">
+            <h2>Total Reviews: 2</h2>
+            <br>
+            <h2>Average Rating: 4.5/5</h2>
+            <br>
+            <a href=""><button class="action-button">Create a Review</button></a>
+        </div>
+        <div class="col-lg-9 review">
+            <div class="comment-card" >
+                <div class="comment-header row">
+                        <div class="col-lg-11">Why do we use it?</div>
+                        <div class="comment-rating col-lg-1">4.2/5</div>
+                </div>
+                <div class="comment-body">
+                    <p>
+                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                    </p>
+                </div>
+                <div class="comment-footer">
+                    <div>by {{ current_user.first_name }} {{ current_user.last_name }} / 11-02-2023</div>
+                </div>
+                <hr>
+            </div>
+            <div class="comment-card" >
+                <div class="comment-header row">
+                        <div class="col-lg-11">Where can I get some?</div>
+                        <div class="comment-rating col-lg-1">4.7/5</div>
+                </div>
+                <div class="comment-body">
+                    <p>
+                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.                    </p>
+                </div>
+                <div class="comment-footer">
+                    <div>by {{ current_user.first_name }} {{ current_user.last_name }} / 09-02-2023</div>
+                </div>
+                <hr>
+            </div>
+
+        </div>
+    </div>
+    <a href="{{ url_for('estore') }}"><button type="button" class="vertical-seperation right-align action-button">Back To Store</button></a>
+
+</div>
+
+{% endblock %}
+
+{% include "footer.html" %}

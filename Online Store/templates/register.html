@@ -1,0 +1,25 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% include "header.html" %}
+
+{% block content %}
+
+<div class="page">
+  <h1 class="override-h1">Register a New User</h1>
+  <br>
+  <div class="row">
+    <div class="col-lg-4">
+          {{ wtf.quick_form(form, novalidate=True, button_map={"Register": "primary"}) }}
+    </div>
+    <div class="col-lg-2"></div>
+    <div class="col-lg-6">
+      <img src="/static/img/register-img.png" alt="">
+    </div>
+  </div>
+</div>
+
+
+{% include "footer.html" %}
+{% endblock %}
+

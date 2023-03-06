@@ -1,0 +1,211 @@
+{% include "header.html" %}
+
+{% block content %}
+
+<div class="page">
+    <h1>Admin</h1>
+    <br>
+    <div class="row admin">
+        <div class="col-lg-5 admin-panel">
+            <h2 class="admin-panel-title">- Users -</h2>
+            <br>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">email</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                {% for user in users %}
+                  <tr>
+                    <th scope="row">{{ user.id }}</th>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.last_name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td><a href="{{ url_for('delete_user', user_id=user.id) }}">Delete</a></td>
+                    <td><button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modal-user{{ user.id }}">View</button>
+                        <!-- Vertically centered scrollable modal -->
+                        <div class="modal fade" id="modal-user{{ user.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <div class="modal-title fs-6" id="exampleModalLabel">
+                                            <div>#{{ user.id }} | {{ user.first_name }} {{ user.last_name }}</div>
+                                        </div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row user-details">
+                                            <div class="col-lg-3 modal-text"><i class="icon bi bi-telephone"></i>{{ user.phone }}</div>
+                                            <div class="col-lg-3 modal-text"><i class="icon bi bi-balloon"></i>{{ user.b_day }}</div>
+                                            <div class="col-lg-6 modal-text"><i class="icon bi bi-envelope"></i>{{ user.email }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer user-modal-actions">
+                                        <div class="modal-info">    
+                                            <div class="col-lg-12">
+                                                <div class="modal-summary">Activity</div>
+                                                <div class="modal-title">Orders</div>
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">Date</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="table-group-divider">
+                                                        {% for order in orders %}
+                                                        <tr>
+                                                            {% if user.id == order.customer_id %}
+                                                                <th scope="row">{{ order.id }}</th>
+                                                                <td>{{ order.date }}</td>
+                                                                {% endif %}
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                                <div class="modal-title">Comments</div></div>
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Item</th>
+                                                            <th scope="col">Date</th>
+                                                            <th scope="col">Rating</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="table-group-divider">
+                                                        <tr>
+                                                            <td><a href="">Item 1</a></td>
+                                                            <td>11-02-2023</td>
+                                                            <td>4.7/5</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                </div> 
+                                            </div>                                
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+        </div>
+        <div class="col-lg-3 admin-panel">
+            <h2 class="admin-panel-title">- Missing Items -</h2>
+            <br>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Barcode</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                {% for item in missing_items %}
+                  <tr>
+                    <th scope="row">{{ item.id }}</th>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.barcode }}</td>
+                    <td><a href="{{ url_for('edit_item', item_id=item.id) }}">edit</a></td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+        </div>
+        <div class="col-lg-4 admin-panel">
+            <h2 class="admin-panel-title">- Order History -</h2>
+            <br>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">User</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                {% for order in orders %}
+                  <tr>
+                    <th scope="row">{{ order.id }}</th>
+                    <td>{{ order.date }}</td>
+                    {% set user = users[order.customer_id-1] %}
+                    <td>{{ user.email }}</td>
+                    <td><button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#modal-order-{{ order.id }}">View</button>
+                        <!-- Vertically centered scrollable modal -->
+                        <div class="modal fade" id="modal-order-{{ order.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <div class="modal-title fs-5" id="exampleModalLabel">Order: #{{ order.id }}</div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Item</th>
+                                                        <th scope="col">Barcode</th>
+                                                        <th scope="col">Price</th>
+                                                        <th scope="col">Quantity</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="table-group-divider">
+                                                    {% set total = [0] %}
+                                                    {% for item in carts %}
+                                                        {% if item.order_id == order.id %}
+                                                            {% for general_item in all_items %}
+                                                                {% if general_item.id == item.item_id %}
+                                                                    <tr>
+                                                                        <td scope="row">{{ general_item.id }}</td>
+                                                                        <td scope="row">{{ general_item.name }}</td>
+                                                                        <td scope="row">{{ general_item.barcode }}</td>
+                                                                        <td scope="row">{{ general_item.price }}</td>
+                                                                        <td scope="row">{{ item.item_count }}</td>
+                                                                    </tr>
+                                                                    {% if total.append(total.pop()+ (general_item.price | currencyFormat)*item.item_count) %}{% endif %}
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                    <div class="modal-summary">Total: ${{ '%0.2f' % total[0] }}</div>
+                                    <br>
+                                    <div class="modal-footer">
+                                        <div class="row modal-info">
+                                            <div class="col-lg-6 modal-text"> <i class="icon bi bi-person"></i>{{ user.email }}</div>
+                                            <div class="col-lg-6 modal-text"> <i class="icon bi bi-calendar"></i>{{ order.date }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+
+{% include "footer.html" %}
+
+{% endblock %}
+

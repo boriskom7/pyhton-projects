@@ -1,0 +1,42 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% include "header.html" %}
+
+{% block content %}
+
+<div class="page">
+    <h1 class="override-h1">Login </h1>
+    <br>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="content">
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for message in messages %}
+               <p>{{ message }}</p>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+          {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+      </div>
+      <br>
+      <p>
+          Or,<a href="{{ url_for('register') }}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16"><path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/></svg>
+              Register</a> a new user
+      </p>
+    </div>
+    <div class="col-lg-3"></div>
+    <div class="col-lg-5">
+      <img src="/static/img/login-img.png" alt="">
+    </div>
+  </div>
+</div>
+
+
+{% include "footer.html" %}
+
+{% endblock %}
+

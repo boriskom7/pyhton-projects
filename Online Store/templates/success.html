@@ -1,0 +1,26 @@
+{% include "header.html" %}
+
+{% block content %}
+
+<div class="page row">
+  <h1 c>Payment Successful!</h1>
+  <br>
+  <div class="col-lg-6">
+    <br>
+    <section>
+      <p>
+        Order #000001 completed successfully.
+        <br>
+        See you soon...
+      </p>
+      <a href="{{ url_for('estore') }}">Back to store</a>
+  </section>
+  </div>
+  <div class="col-lg-6">
+    <img src="/static/img/payment-success.png" alt="">
+  </div>
+</div>
+
+{% endblock %}
+
+{% include "footer.html" %}

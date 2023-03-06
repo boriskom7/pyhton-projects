@@ -1,0 +1,60 @@
+{% include "header.html" %}
+
+{% block content %}
+
+<div>
+    <div class="page">
+        <div class="row">
+            <h1 class="col-lg-1">Store </h1>
+            {% if current_user.id == 2: %}
+            <a class="col-lg-2" href="{{ url_for('new_item') }}"><button type="button" class="btn btn-warning action-button"><i class="icon bi bi-plus-square"></i>New Item</button></a>
+            {% endif %}
+        </div>
+        <br>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            {% for item in all_items %}
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    {% if current_user.id == 2: %}
+                    <a href="{{ url_for('edit_item', item_id=item.id ) }}"><button class="edit-btn"><i class="bi bi-pen"></i>Edit Item</button></a>
+                    {% endif %}
+                    <div class="item-image">
+                        <a href="{{ url_for('item', item_id=item.id) }}"><img src="{{ item.img_url }}" class="card-img-top" alt="..."></a>
+                        {% if item.quantity == 0: %}
+                        <div class="item-oos">
+                            Out of Stock
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <h4 class="card-title col-sm-9">{{ item.name }}</h4>
+                            <span class="rating-text col-sm-3">{{ item.rating }}/5</span>
+                        </div>
+                        <div class="barcode-text">{{ item.barcode }}</div>
+                        <div class="item-text">{{ item.description }}</div>
+                        <hr>
+                        <div class="price-text">{{ item.price }}</div>
+                        <div class="available-text">Available: {{ item.quantity }}</div>
+                        <div class="row">
+                            <form action="{{ url_for('add_to_cart', item_id = item.id) }}" method="post" role="form" class="col-sm-4 input-group">
+                                {% if item.quantity == 0: %}
+                                <input type="number" min="0" max="0" class="form-control" placeholder="Out of Stock" name="count">
+                                <button class="btn btn-outline-secondary" type="submit" id="button-addon2" disabled>Add to Cart</button>                           
+                                {% else %}
+                                <input type="number" min=1 max="{{ item.quantity }}" class="form-control" placeholder=1 name="count">
+                                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Add to Cart</button>
+                                {% endif %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% include "footer.html" %}

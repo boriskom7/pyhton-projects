@@ -1,0 +1,422 @@
+/*--- Home Page ---*/
+body,html {
+    height: 100vh;
+    position: relative;
+    min-height: 100vh;
+}
+
+footer {
+    background:rgba(240, 231, 108, 0.829);
+    text-align: left;
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    bottom: 0;
+    padding: 80px;
+    width: 100%;
+    height: auto;  
+    margin-top: 72px;
+}
+
+.footer-icon {
+    padding-right: 10px;
+    color: black;
+}
+
+/*--- Text Styles ---*/
+h1 {
+    font-family: 'Arsenal', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.override-h1 {
+    font-family: 'Arsenal', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+}
+
+h2 {
+    font-family: 'Arsenal', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+}
+
+h3 {
+    font-family: 'Mulish', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+h4 {
+    font-family: 'Mulish', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.rating-text {
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: gray;
+}
+
+.barcode-text {
+    font-family: 'Mulish', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: gray;
+}
+
+.price-text {
+    font-family: 'Mulish', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: black;
+    text-align: right;
+    padding-bottom: 12px;
+}
+
+.discount-text {
+    font-family: 'Mulish', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: red;
+    text-align: right;
+    padding-bottom: 12px;
+}
+
+.item-text {
+    font-family: 'Numans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: black;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.available-text {
+    font-family: 'Mulish', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: gray;
+}
+
+p {
+    font-family: 'Numans', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.table-header {
+    text-align: left;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: gray;
+    margin-bottom: 12px;
+    margin-left: 6px;
+}
+
+.table-text {
+    text-align: left;
+}
+
+.checkout-title {
+    text-align: left;
+    font-family: 'Mulish', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.checkout-title + .total {
+    font-weight: 800;
+    font-size: 24px;
+}
+
+.checkout-value {
+    text-align: right;
+    font-family: 'Mulish', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.checkout-value + .total {
+    font-weight: 800;
+    font-size: 24px;
+}
+
+.edit-btn {
+    width: 100%;
+    border-radius: 4px;
+    border-color: transparent;
+}
+
+
+.full-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+}
+
+.center {
+    width: 1200px;
+    height: 400px;
+    /*---  outline: solid 2px rgb(219, 203, 151); ---*/
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    padding: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.navbar{
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 12px;
+
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.home {
+    
+}
+
+.carousel-item img{
+    object-fit: cover;
+}
+
+.page {
+    margin-top: 60px;
+    width: 80%;
+    margin-left: 10%;   
+    position: relative;
+    min-height: 74%;
+}
+
+.item-image {
+    position: relative;
+}
+
+.item-oos {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    background-color: red;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.promotion {
+    width: 80%;
+    text-align: center;
+    margin-left: 10%;
+    margin-top: 60px;
+}
+
+.card-group {
+    width: 80%;
+    text-align: left;
+    margin-left: 10%;
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+
+/* images */
+.card-img-top {
+    padding: 24px;
+}
+
+.img-fluid {
+    padding: 8px;
+}
+
+/* promotion */
+.promotion-card {
+    margin-right: 32px;
+    outline: none;
+}
+
+.promotion-img {
+    position: relative;
+}
+
+.promotion-discount {
+    position: absolute;
+    width: 25%;
+    top: 50%;
+    right: 0;
+    background-color: red;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.promotion-title {
+    display: flex;
+}
+
+.promotion-price {
+    color: black;
+    text-align: right;
+    font-size: 20px;
+    font-weight: 800;
+    width: 25%;
+}
+
+.discount {
+    color: red;
+}
+
+.icon {
+    padding-right: 10px;
+}
+
+.action-button {
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    background-color: rgba(240, 231, 108, 0.829);
+    border-radius: 6px;
+    border: none;
+    color: black;
+    padding: 16px 24px;
+    text-align: center;
+
+    width: auto;
+    max-width: 360px;
+    margin-bottom: 16px;
+ 
+    cursor: pointer;
+}
+
+.action-button:hover {
+    background-color: rgba(226, 216, 67, 0.829);
+}
+
+.checkout-btn {
+    width: 100%;
+}
+
+.vertical-seperation {
+    margin-top: 24px; 
+}
+
+.right-align{
+    margin-right: 25%;
+    margin-left: 25%;
+}
+
+
+/*--- Comments ---*/
+
+.comment-card {
+    margin-top: 24px;
+
+}
+
+.comment-summary {
+    margin-top: 24px;
+
+}
+
+.comment-header {
+    margin-bottom: 12px;
+    
+    font-family: 'Numans', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: black;
+    text-align: left;
+    padding-bottom: 12px;
+}
+
+.comment-rating {
+   background-color: black;
+   color: white;
+   font-size: 18px;
+
+   width: auto;
+   padding-top: 6px;
+   padding-bottom: 6px;
+}
+
+.comment-body {
+    margin-bottom: 12px;
+    font-family: 'Numans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.comment-footer {
+    margin-bottom: 12px;
+    text-align: right;
+    font-family: 'Numans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.comment-card hr {
+    border-top: 1px dashed gray;
+}
+
+
+
+/*--- Admin ---*/
+.admin-panel {
+    height: auto;
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.admin-panel-title {
+    text-align: center;
+    font-size: 32px;
+}
+
+/*--- Modal ---*/
+.modal-title {
+    font-family: 'Mulish', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.modal-text {
+    font-family: 'Mulish', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.modal-summary {
+    width: 100%;
+    text-align: center;
+    font-family: 'Arsenal', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.modal-info {
+    width: 100%;
+}
+
+.user-details {
+    margin-left: 4px;
+}
+
+.user-modal-actions {
+    width: 100%;
+    text-align: left;
+}
+
