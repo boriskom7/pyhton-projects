@@ -3,7 +3,7 @@
 ## Concepts:
 
 1. Create a Web Server with Flask
-2. Use and customize Bootstrap elements to create the web app UI
+2. Use and customize Bootstrap elements to create the web app UI (selector, progress bar, buttons)
 3. Word count functionallity to keep track on progress and detect writing stop event
 4. Countdown timer (using JS function)
 
