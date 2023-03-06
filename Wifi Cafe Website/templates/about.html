@@ -1,0 +1,353 @@
+{% block content %}
+    {% include "header.html" %}
+
+        <!-- Page Header -->
+        <header class="masthead" style="background-image: url('{{url_for('static', filename='img/about-img.jpg')}}')">
+            <div class="overlay"></div>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                  <div class="page-heading">
+                    <h1>About Us</h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </header>
+
+        <div class="div-container">
+            <p>A coffeehouse, coffee shop, or café is an establishment that primarily serves coffee of various types, notably espresso, latte, and cappuccino. Some coffeehouses may serve cold drinks, such as iced coffee and iced tea, as well as other non-caffeinated beverages. In continental Europe, cafés serve alcoholic drinks. A coffeehouse may also serve food, such as light snacks, sandwiches, muffins, fruit, or pastries. Coffeehouses range from owner-operated small businesses to large multinational corporations. Some coffeehouse chains operate on a franchise business model, with numerous branches across various countries around the world.
+                While café may refer to a coffeehouse, the term "café" generally refers to a diner, British café (colloquially called a "caff"), "greasy spoon" (a small and inexpensive restaurant), transport café, teahouse or tea room, or other casual eating and drinking place.[1][2][3][4][5] A coffeehouse may share some of the same characteristics of a bar or restaurant, but it is different from a cafeteria. Many coffeehouses in the Middle East and in West Asian immigrant districts in the Western world offer shisha (actually called nargile in Levantine Arabic, Greek and Turkish), flavored tobacco smoked through a hookah. An espresso bar is a type of coffeehouse that specializes in serving espresso and espresso-based drinks.
+                From a cultural standpoint, coffeehouses largely serve as centers of social interaction: a coffeehouse provides patrons with a place to congregate, talk, read, write, entertain one another, or pass the time, whether individually or in small groups. Since the popularization of Wi-Fi, coffeehouses with this capability have also become places for patrons to access the Internet on their laptops and tablet computers. A coffeehouse can serve as an informal club for its regular members.[6] As early as the 1950s Beatnik era and the 1960s folk music scene, coffeehouses have hosted singer-songwriter performances, typically in the evening.[7]
+            </p>
+        </div>
+    {% include "footer.html" %}
+{% endblock %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% include "header.html" %}
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('{{url_for('static', filename='img/edit-img.jpg')}}')">
+  <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Edit cafe</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+</header>
+
+{% block content %}
+<div class="div-container">
+  <br>
+  <form action="" method="post" class="form" role="form">
+    {{ form.csrf_token() }}
+
+    <div class="row">
+      <div class="form-group col-md-6">
+        {{ wtf.form_field(form.name, class='form-control', placeholder='Cafe Name') }}
+      </div>
+      <div class="form-group col-md-6">
+        {{ wtf.form_field(form.location, class='form-control', placeholder='...') }}
+      </div>
+    </div>
+
+    <br>
+
+    <div class="form-group">
+      {{ wtf.form_field(form.map_url, type='url', class='form-control', placeholder='http://') }}
+      <br>
+      {{ wtf.form_field(form.img_url, type='url', class='form-control', placeholder='http://') }}
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="form-group col-md-3">
+        {{ wtf.form_field(form.has_sockets, class='form-control') }}
+      </div>
+      <div class="form-group col-md-3">
+        {{ wtf.form_field(form.has_toilet, class='form-control') }}
+      </div>
+      <div class="form-group col-md-3">
+        {{ wtf.form_field(form.has_wifi, class='form-control') }}
+      </div>
+      <div class="form-group col-md-3">
+        {{ wtf.form_field(form.can_take_calls, class='form-control') }}
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row col-md-6 mx-auto">
+      <div class="col-md-6">
+        {{ wtf.form_field(form.seats, class='form-control', placeholder='0') }}
+      </div>
+      <div class="col-md-6">
+        {{ wtf.form_field(form.coffee_price, class='form-control', placeholder='0') }}
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+          <button type="submit" class="btn btn-primary col-md-4 mx-auto">Update Cafe</button>
+    </div>
+
+    <br>
+  </form>
+</div>
+
+{% include "footer.html" %}
+{% endblock %}
+
+
+
+
+  <!-- Footer -->
+  <footer>
+
+  </footer>
+
+
+
+</body>
+
+</html>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cafe Place</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+
+
+    <!-- Custom fonts for this template -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+  {% include "navbar.html" %}
+  </body>
+{% include "header.html" %}
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('{{url_for('static', filename='img/home-img.jpg')}}')">
+  <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Coffee for everyone</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+</header>
+
+
+
+<div class="div-container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Map</th>
+        <th scope="col">Image</th>
+        <th scope="col">Location</th>
+        <th scope="col">Sockets</th>
+        <th scope="col">Toilets</th>
+        <th scope="col">WiFi</th>
+        <th scope="col">Calls</th>
+        <th scope="col">Num of Seats</th>
+        <th scope="col">Coffee Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cafe in cafes %}
+      <tr>
+        <th scope="row">{{ cafe.id }}</th>
+        <td>{{ cafe.name }}</td>
+        <td>
+          <a href="{{ cafe.map_url }}">Map</a>
+        </td>
+        <td>
+          <a href="{{ cafe.img_url }}">Image</a>
+        </td>
+        <td>{{ cafe.location }}</td>
+        <td>
+          {% if cafe.has_sockets == True %}
+            <i class="bi bi-check-square"></i>
+          {% else %}
+            <i class="bi bi-square"></i>
+          {% endif %}
+        </td>
+        <td>
+          {% if cafe.has_toilet == True %}
+            <i class="bi bi-check-square"></i>
+          {% else %}
+            <i class="bi bi-square"></i>
+          {% endif %}
+        </td>
+        <td>
+          {% if cafe.has_wifi == True %}
+            <i class="bi bi-check-square"></i>
+          {% else %}
+            <i class="bi bi-square"></i>
+          {% endif %}
+         </td>
+        <td>
+          {% if cafe.can_take_calls == True %}
+            <i class="bi bi-check-square"></i>
+          {% else %}
+            <i class="bi bi-square"></i>
+          {% endif %}
+        </td>
+        <td>{{ cafe.seats }}</td>
+        <td>{{ cafe.coffee_price }}$</td>
+        <td><a href="{{ url_for('edit', cafe_id=cafe.id) }}"><i class="bi bi-pencil-square"></i></a></td>
+        <td><a href="{{ url_for('delete', cafe_id=cafe.id) }}"><i class="bi bi-trash3-fill"></i></a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% include "footer.html" %}
+
+
+
+<!--- Navbar --->
+
+<nav class="navbar navbar-expand-sm navbar-light div-container">
+    <div class="container-fluid full-width no-height">
+        <a class="navbar-brand" href="/">
+          <img src="{{ url_for('static', filename='img/logo text.png') }}" alt="" >
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item nav-text">
+              <a type="button" href="/new" class="btn btn-primary">ADD CAFE</a>
+            </li>
+            <li class="nav-item nav-text">
+              <a type="button" href="/about" class="btn btn-light">ABOUT</a>
+            </li>
+          </ul>
+        </div>
+    </div>
+</nav>
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% include "header.html" %}
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('{{url_for('static', filename='img/new-img.jpg')}}')">
+  <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Add new cafe</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+</header>
+
+
+{% block content %}
+<div class="div-container">
+  <form action="" method="post" class="form" role="form">
+    {{ form.csrf_token() }}
+
+    <div class="row">
+      <div class="form-group col-md-6">
+        {{ wtf.form_field(form.name, class='form-control', placeholder='Cafe Name') }}
+      </div>
+      <div class="form-group col-md-6">
+        {{ wtf.form_field(form.location, class='form-control', placeholder='...') }}
+      </div>
+    </div>
+
+    <br>
+
+    <div class="form-group">
+      {{ wtf.form_field(form.map_url, type='url', class='form-control', placeholder='http://') }}
+      <br>
+      {{ wtf.form_field(form.img_url, type='url', class='form-control', placeholder='http://') }}
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="form-group col-md-3">
+        {{ wtf.form_field(form.has_sockets, class='form-control') }}
+      </div>
+      <div class="form-group col-md-3">
+        {{ wtf.form_field(form.has_toilet, class='form-control') }}
+      </div>
+      <div class="form-group col-md-3">
+        {{ wtf.form_field(form.has_wifi, class='form-control') }}
+      </div>
+      <div class="form-group col-md-3">
+        {{ wtf.form_field(form.can_take_calls, class='form-control') }}
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row col-md-6 mx-auto">
+      <div class="col-md-6">
+        {{ wtf.form_field(form.seats, class='form-control', placeholder='0') }}
+      </div>
+      <div class="col-md-6">
+        {{ wtf.form_field(form.coffee_price, class='form-control', placeholder='0') }}
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+          <button type="submit" class="btn btn-primary col-md-4 mx-auto">Add Cafe</button>
+    </div>
+
+    <br>
+
+  </form>
+</div>
+
+{% include "footer.html" %}
+{% endblock %}
+
+
+
