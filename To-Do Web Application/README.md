@@ -6,9 +6,9 @@
 2. Python Decorator Functions and the @ Syntax
 3. Flask URL Paths and the Flask Debugger
 4. Rendering HTML Elements with Flask
-5. Use Python Decorators to Style HTML Tags
-6. Decorators with *args and **kwargs Create a Python Decorator
-7. Bootstrap modals
+5. Database opreations with SQLAlchemy
+6. Use Python Decorators to Style HTML Tags
+7. Bootstrap components customization : lists, modals, buttons
 
 
 
