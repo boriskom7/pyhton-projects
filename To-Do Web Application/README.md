@@ -11,6 +11,9 @@
 7. Bootstrap components customization : lists, modals, buttons
 
 
+*
+*
+*
 
 
-![ToDo](https://user-images.githubusercontent.com/97305160/223142224-184785fb-8af3-4fc4-8bd3-652fd4c6ece8.PNG)
+![ToDo](https://user-images.githubusercontent.com/97305160/223143061-2cca48bd-8d40-40f1-833c-bc6e36e27fc7.PNG)
