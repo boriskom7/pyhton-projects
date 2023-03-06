@@ -1,0 +1,63 @@
+{% include "header.html" %}
+
+{% block content %}
+<div class="standings">
+  <div class="standings-inner">
+      <div class="standing-header row">
+        <img class="col-sm-3" src={{ league_data.logo }} alt="">
+        <h2 class="col-sm-10">{{ league_data.name }} | {{ league_data.country }} | {{ league_data.season }}</h2>
+        <a class="col-sm-1" href="{{ url_for('home') }}"><button>HOME</button></a>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">Team</th>
+            <th scope="col">Played</th>
+            <th scope="col">Win</th>
+            <th scope="col">Draw</th>
+            <th scope="col">Lose</th>
+            <th scope="col">Goals For</th>
+            <th scope="col">Goals Against</th>
+            <th scope="col">Difference</th>
+            <th scope="col">Points</th>
+            <th scope="col">Form</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for team in team_data %}
+            <tr>
+                <th scope="row">{{ team.rank }}</th>
+                <td>
+                  {% if (team.description == "Promotion - Champions League (Group Stage)") or (team.description == "Promotion - Champions League (Qualification)") %}
+                    <h3>UCL</h3>
+                    {% elif (team.description == "Promotion - Europa League (Group Stage)") or  (team.description == "Promotion - Europa Conference League (Qualification)") %}
+                    <h3>UL</h3>
+                    {% elif (team.description == "Relegation - Championship") or (team.description == "Relegation - Ligue 2") or (team.description == "Relegation - Serie B") or (team.description == "Relegation - LaLiga2") or (team.description == "Relegation - 2. Bundesliga") %}
+                    <h3>REL</h3>
+                  {% endif %}
+                </td>
+                <td ><img src="{{ team.team.logo }}" width="25" height="25"></td>
+                <td>{{ team.team.name }}</td>
+                <td scope="">{{ team.all.played }}</td>
+                <td scope="">{{ team.all.win }}</td>
+                <td scope="">{{ team.all.draw }}</td>
+                <td scope="">{{ team.all.lose }}</td>
+                <td scope="">{{ team.all.goals.for }}</td>
+                <td scope="">{{ team.all.goals.against }}</td>
+                <td scope="">{{ team.goalsDiff }}</td>
+                <th scope="">{{ team.points }}</th>
+                <td scope="">{{ team.form }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+  </div>
+</div>
+
+    
+{% endblock %}
+
+{% include "footer.html" %}

@@ -1,0 +1,53 @@
+{% include "header.html" %}
+
+{% block content %}
+<div class="home">
+    <div class="full-screen">
+        <div class="center">
+            <h1>SoccerAPI</h1>
+            
+            <div class="d-grid gap-2 d-md-block">
+                <hr>
+                <br>
+                <button type="button" class="btn btn-light btn-lg">
+                    <img class="league-logo" src="https://media-3.api-sports.io/football/leagues/39.png" alt=""><br>
+                    <a href={{ url_for('show_league', league_name=39) }}>Premier League</a>
+                </button>
+                <button type="button" class="btn btn-light btn-lg">
+                    <img class="league-logo" src="https://media-3.api-sports.io/football/leagues/61.png" alt=""><br>
+                    <a href={{ url_for('show_league', league_name=61) }}>Ligue 1</a>
+                </button>
+                <button type="button" class="btn btn-light btn-lg">
+                    <img class="league-logo" src="https://media-3.api-sports.io/football/leagues/78.png" alt=""><br>
+                    <a href={{ url_for('show_league', league_name=78) }}>Bundesliga</a>       
+                </button>         
+                <button type="button" class="btn btn-light btn-lg">
+                    <img class="league-logo" src="https://media-3.api-sports.io/football/leagues/140.png" alt=""><br>
+                    <a href={{ url_for('show_league', league_name=140) }}>La Liga</a>
+                </button>
+                <button type="button" class="btn btn-light btn-lg">
+                    <img class="league-logo" src="https://media-3.api-sports.io/football/leagues/135.png" alt=""><br>
+                    <a href={{ url_for('show_league', league_name=135) }}>Seria A</a>
+                </button>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Season 2022
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">2022</a></li>
+              <li><a class="dropdown-item" href="#">2021</a></li>
+              <li><a class="dropdown-item" href="#">2020</a></li>
+              <li><a class="dropdown-item" href="#">2019</a></li>
+              <li><a class="dropdown-item" href="#">2018</a></li>
+              <li><a class="dropdown-item" href="#">2017</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% include "footer.html" %}
