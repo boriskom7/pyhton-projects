@@ -2,7 +2,7 @@
 
 ## Concepts:
 
-1. Finding and Selecting Particular Pixcels and RGB with PyAutoGUI
+1. Finding and Selecting Particular Pixels and RGB with PyAutoGUI
 
 
 
